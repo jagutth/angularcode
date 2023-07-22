@@ -4,15 +4,20 @@
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-form-field appearance="fill">
-        <mat-label>Username</mat-label>
-        <input matInput placeholder="Enter your username">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" placeholder="Enter your password">
-      </mat-form-field>
+      <mat-grid-list cols="1" rowHeight="auto">
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Enter your username">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Enter your password">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary">Login</button>
@@ -21,31 +26,7 @@
 </div>
 
 
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Add this import
-import { MatCardModule } from '@angular/material/card'; // Add this import
-import { MatFormFieldModule } from '@angular/material/form-field'; // Add this import
-import { MatInputModule } from '@angular/material/input'; // Add this import
-import { MatButtonModule } from '@angular/material/button'; // Add this import
-
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-
-
+/* login.component.css */
 .login-container {
   display: flex;
   justify-content: center;
@@ -54,6 +35,11 @@ export class AppModule { }
 }
 
 .login-card {
-  width: 300px;
+  width: 400px; /* Increase the width as needed */
   max-width: 90%;
+}
+
+/* Add margin between username and password inputs */
+mat-grid-tile + mat-grid-tile {
+  margin-top: 16px;
 }
