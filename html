@@ -1,74 +1,21 @@
-<!-- Login component -->
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h1>Login</h1>
-      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Login</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-form-field>
-              <mat-label>Email</mat-label>
-              <input matInput formControlName="email" placeholder="Enter email">
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>Password</mat-label>
-              <input matInput type="password" formControlName="password" placeholder="Enter password">
-            </mat-form-field>
-          </mat-card-content>
-          <mat-card-footer>
-            <button mat-raised-button type="submit" color="primary">Login</button>
-          </mat-card-footer>
-        </mat-card>
-      </form>
-    </div>
-  </div>
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Enter your username">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Enter your password">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary">Login</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
-
-<!-- CSS -->
-<style>
-  .container {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  form {
-    margin-top: 20px;
-  }
-
-  .mat-card {
-    width: 100%;
-  }
-</style>
-
-<!-- TypeScript -->
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatCard, MatFormField, MatInput, MatRaisedButton } from '@angular/material';
-
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
-})
-export class LoginComponent implements OnInit {
-
-  loginForm: FormGroup;
-
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit() {
-    this.loginForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-  }
-
-  onLogin() {
-    // TODO: Implement login logic
-  }
-
-}
-
