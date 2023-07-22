@@ -19,3 +19,41 @@
     </mat-card-actions>
   </mat-card>
 </div>
+
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Add this import
+import { MatCardModule } from '@angular/material/card'; // Add this import
+import { MatFormFieldModule } from '@angular/material/form-field'; // Add this import
+import { MatInputModule } from '@angular/material/input'; // Add this import
+import { MatButtonModule } from '@angular/material/button'; // Add this import
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card {
+  width: 300px;
+  max-width: 90%;
+}
