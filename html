@@ -1,45 +1,49 @@
-<div class="login-container">
-  <mat-card class="login-card">
-    <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-grid-list cols="1" rowHeight="auto">
-        <mat-grid-tile>
-          <mat-form-field appearance="fill">
-            <mat-label>Username</mat-label>
-            <input matInput placeholder="Enter your username">
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" placeholder="Enter your password">
-          </mat-form-field>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary">Login</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+<form [formGroup]="fileUploadForm">
+  <md-input-file
+    name="file"
+    placeholder="Select a file"
+    [(ngModel)]="fileUploadForm.file"
+  />
+  <md-progress-bar
+    [value]="fileUploadProgress"
+    max="100"
+    style="width: 100%"
+  />
+  <button type="submit" class="md-button md-raised">Upload</button>
+</form>
 
 
-/* login.component.css */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+    import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { UploadService } from './upload.service';
 
-.login-card {
-  width: 400px; /* Increase the width as needed */
-  max-width: 90%;
-}
+@Component({
+  selector: 'my-file-upload',
+  templateUrl: './file-upload.component.html',
+})
+export class FileUploadComponent implements OnInit {
+  fileUploadForm: FormGroup;
+  fileUploadProgress: number = 0;
 
-/* Add margin between username and password inputs */
-mat-grid-tile + mat-grid-tile {
-  margin-top: 16px;
+  constructor(private formBuilder: FormBuilder, private uploadService: UploadService) {}
+
+  ngOnInit() {
+    this.fileUploadForm = this.formBuilder.group({
+      file: [null],
+    });
+  }
+
+  onUpload() {
+    const file = this.fileUploadForm.value.file;
+    if (file) {
+      this.uploadService.uploadFile(file).subscribe(
+        (progress) => {
+          this.fileUploadProgress = progress;
+        },
+        (error) => {
+          console.error(error);
+        },
+      );
+    }
+  }
 }
