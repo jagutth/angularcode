@@ -1,48 +1,106 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap File Upload Form</title>
-    <!-- Add Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Custom CSS -->
-    <style>
-        .custom-form-border {
-            border: 1px solid #ddd; /* Add your desired border color and thickness here */
-            padding: 20px; /* Add some padding to the form to create space between the border and the content */
-            border-radius: 5px; /* Optional: Add rounded corners to the border */
-        }
-    </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <h2>File Upload Form</h2>
-        <form action="/upload" method="post" enctype="multipart/form-data" class="custom-form-border">
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" name="firstName">
-            </div>
-            <br> <!-- Add line break -->
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" name="lastName">
-            </div>
-            <br> <!-- Add line break -->
-            <div class="form-group">
-                <label for="fileInput">Choose File</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="fileInput" name="file">
-                    <label class="custom-file-label" for="fileInput">Browse</label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary mt-3">Upload</button>
-        </form>
-    </div>
+<html lang="en">
 
-    <!-- Add Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titile</title>
+  <!-- Bootstrap CSS link (Make sure to include this in your project) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Add custom styles if needed */
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">LOGO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Link 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link 2 </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link 3</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link 4</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content Area with Sidebar -->
+  <div class="container-fluid mt-4">
+    <div class="row">
+      <!-- Left Navigation Sidebar -->
+      <nav id="sidebar" class="col-lg-2 col-md-3 bg-light">
+        <div class="position-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link 3</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link 4</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="col-lg-10 col-md-9">
+        <h1>Welcome to Our Site</h1>
+<br/><br/><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo laoreet sapien non hendrerit. Integer
+          volutpat orci sed quam sodales, non lacinia arcu interdum. Etiam euismod magna quis nisi tincidunt, nec
+          hendrerit nulla feugiat.</p>
+		  <br/><br/><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo laoreet sapien non hendrerit. Integer
+          volutpat orci sed quam sodales, non lacinia arcu interdum. Etiam euismod magna quis nisi tincidunt, nec
+          hendrerit nulla feugiat.</p><br/><br/><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo laoreet sapien non hendrerit. Integer
+          volutpat orci sed quam sodales, non lacinia arcu interdum. Etiam euismod magna quis nisi tincidunt, nec
+          hendrerit nulla feugiat.</p><br/><br/><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo laoreet sapien non hendrerit. Integer
+          volutpat orci sed quam sodales, non lacinia arcu interdum. Etiam euismod magna quis nisi tincidunt, nec
+          hendrerit nulla feugiat.</p><br/><br/><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo laoreet sapien non hendrerit. Integer
+          volutpat orci sed quam sodales, non lacinia arcu interdum. Etiam euismod magna quis nisi tincidunt, nec
+          hendrerit nulla feugiat.</p>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light text-center py-3 mt-4">
+    &copy; 2023 SITE. All rights reserved.
+  </footer>
+
+  <!-- Bootstrap JS scripts (Make sure to include these at the end of your HTML body) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- JavaScript to toggle the sidebar -->
+  <script>
+    //document.getElementById("sidebar").classList.add("d-none"); // Collapse the sidebar by default
+
+    document.getElementById("navbarNav").addEventListener("click", function () {
+      document.getElementById("sidebar").classList.toggle("d-none");
+    });
+  </script>
 </body>
+
 </html>
