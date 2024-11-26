@@ -1,4 +1,70 @@
-	<!DOCTYPE html>
+import groovy.json.JsonSlurper
+import java.net.HttpURLConnection
+import java.net.URL
+
+// OAuth 2.0 token endpoint and client details
+def tokenUrl = "https://your-auth-server.com/oauth/token"
+def clientId = "your_client_id"
+def clientSecret = "your_client_secret"
+def scope = "your_scope"
+
+// Check if token is already available and valid
+def accessToken = vars.get("access_token")
+def tokenExpiry = vars.getObject("token_expiry") // Stored as long timestamp
+def currentTime = System.currentTimeMillis()
+
+if (accessToken == null || tokenExpiry == null || currentTime >= tokenExpiry) {
+    log.info("Token expired or not available. Generating a new one...")
+    try {
+        // Open HTTP connection
+        URL url = new URL(tokenUrl)
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection()
+        conn.setRequestMethod("POST")
+        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
+        conn.setDoOutput(true)
+
+        // Prepare request body
+        def body = "grant_type=client_credentials" +
+                   "&client_id=${clientId}" +
+                   "&client_secret=${clientSecret}" +
+                   "&scope=${scope}"
+
+        // Send request
+        conn.getOutputStream().write(body.bytes)
+
+        // Read response
+        def responseCode = conn.getResponseCode()
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            def response = conn.getInputStream().getText()
+            def jsonResponse = new JsonSlurper().parseText(response)
+
+            // Extract token and expiry
+            accessToken = jsonResponse.access_token
+            def expiresIn = jsonResponse.expires_in * 1000 // Convert to milliseconds
+            tokenExpiry = currentTime + expiresIn
+
+            // Store token and expiry in JMeter variables
+            vars.put("access_token", accessToken)
+            vars.putObject("token_expiry", tokenExpiry)
+            log.info("Successfully generated token: ${accessToken}")
+        } else {
+            def errorResponse = conn.getErrorStream()?.getText()
+            log.error("Failed to generate token. HTTP response code: ${responseCode}. Response: ${errorResponse}")
+            throw new RuntimeException("Token generation failed with response code: ${responseCode}")
+        }
+    } catch (Exception e) {
+        log.error("Error during token generation: ${e.message}", e)
+        throw e
+    }
+} else {
+    log.info("Using cached token: ${accessToken}")
+}
+
+
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
